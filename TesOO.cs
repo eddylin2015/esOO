@@ -29,7 +29,7 @@ namespace esOO
                     // Set new cell value
                     //sheet.GetRow(row).GetCell(0).SetCellValue("foo");
                     // Console.WriteLine("Row {0} = {1}", row, sheet.GetRow(row).GetCell(0).StringCellValue);
-                    //https://stackoverflow.com/questions/5855813/how-to-read-file-using-npoi
+                    
                     for (int col=0;col< sheet.GetRow(row).Cells.Count; col++)
                     {
                         var cell = sheet.GetRow(row).GetCell(col);
@@ -39,6 +39,12 @@ namespace esOO
                             switch (cell.CellType)
                             {
                                 case CellType.Numeric:
+                                    if (HSSFDateUtil.IsCellDateFormatted(cell)) {
+                                        Console.Write(cell.DateCellValue); }
+                                    else {
+                                        Console.Write( cell.NumericCellValue);
+                                    }
+                                    break;
                                     Console.Write(cell.NumericCellValue);
       
                                     break;
